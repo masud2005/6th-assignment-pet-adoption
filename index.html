@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,9 +8,12 @@
     <link href="https://cdn.jsdelivr.net/npm/daisyui@4.12.12/dist/full.min.css" rel="stylesheet" type="text/css" />
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- Font Awesome CDN -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
+        integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
     <title>Pet Adoption with API-6th Assignment</title>
 </head>
+
 <body>
     <header>
         <!-- Navbar Start Here -->
@@ -29,18 +33,21 @@
         </nav>
         <!-- Navbar End Here -->
     </header>
-    
+
     <main>
         <!-- Hero Section Start Here -->
         <section class="container mx-auto w-11/12">
             <div class="hero">
                 <div class="hero-content text-center">
-                  <div class="max-w-[752px]">
-                    <p class="text-gray-500 text-lg md:text-xl font-semibold">Bringing Families Together ❤️‍🔥</p>
-                    <h1 class="text-4xl md:text-6xl font-bold pt-3 md:pt-5">Your Path to Adoption Starts Here</h1>
-                    <p class="py-3 md:py-6">It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a.</p>
-                    <button class="btn bg-emerald-700 px-8 text-white hover:text-black text-lg md:text-xl">View More</button>
-                  </div>
+                    <div class="max-w-[752px]">
+                        <p class="text-gray-500 text-lg md:text-xl font-semibold">Bringing Families Together ❤️‍🔥</p>
+                        <h1 class="text-4xl md:text-6xl font-bold pt-3 md:pt-5">Your Path to Adoption Starts Here</h1>
+                        <p class="py-3 md:py-6">It is a long established fact that a reader will be distracted by the
+                            readable content of a page when looking at its layout. The point of using Lorem Ipsum is
+                            that it has a.</p>
+                        <button class="btn bg-emerald-700 px-8 text-white hover:text-black text-lg md:text-xl">View
+                            More</button>
+                    </div>
                 </div>
             </div>
             <div class="flex justify-center mt-8">
@@ -52,11 +59,31 @@
         <!-- Best Friend Section Start Here -->
         <section class="container mx-auto w-11/12 my-10">
             <div class="max-w-2xl mx-auto">
-                <h1 class="text-center font-bold text-4xl md:text-[40px]">Adopt  Your  Best Friend</h1>
-                <p class="text-gray-500 pt-3">It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a.</p>
+                <h1 class="text-center font-bold text-4xl md:text-[40px]">Adopt Your Best Friend</h1>
+                <p class="text-gray-500 pt-3">It is a long established fact that a reader will be distracted by the
+                    readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has
+                    a.</p>
+            </div>
+
+            <!-- All Pets Category Dynamically Loaded -->
+            <div id="category-container" class="my-10 grid grid-cols-2 lg:grid-cols-4 gap-20">
+                <!-- <div class="border rounded-lg">
+                    <button class="flex gap-3 w-full justify-center py-3">
+                        <img src="./assests/logo.webp" alt="">
+                        <p class="font-bold text-2xl">Cat</p>
+                    </button>
+                </div> -->
+            </div>
+
+            <!-- Best Deal -->
+            <div class="flex justify-between items-center">
+                <h2 class="font-bold text-2xl">Best Deal For You</h2>
+                <button class="btn bg-emerald-700 px-8 text-white hover:text-black text-lg md:text-xl">Sort By Price</button>
             </div>
         </section>
         <!-- Best Friend Section End Here -->
+
+
     </main>
 
     <!-- Footer Section Start Here -->
@@ -89,9 +116,11 @@
             </nav>
             <nav>
                 <h6 class="footer-title">Drop a Message</h6>
-                <input type="text" placeholder="Enter your email" class="input input-bordered w-full max-w-xs bg-gray-800" />
+                <input type="text" placeholder="Enter your email"
+                    class="input input-bordered w-full max-w-xs bg-gray-800" />
                 <div class="w-full">
-                    <button class="btn w-full bg-emerald-700 px-8 border-none text-xl text-white hover:text-black">Subscribe</button>
+                    <button
+                        class="btn w-full bg-emerald-700 px-8 border-none text-xl text-white hover:text-black">Subscribe</button>
                 </div>
             </nav>
         </div>
@@ -101,4 +130,5 @@
     <!-- Main js Added -->
     <script src="./js/main.js"></script>
 </body>
+
 </html>
