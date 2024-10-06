@@ -18,12 +18,39 @@ const loadAllPets = async() => {
 }
 loadAllPets();
 
+
+// Show Specific Category
+const loadSpecificPetsCategory = async(category) => {
+    // console.log('category');
+    const res = await fetch(`https://openapi.programming-hero.com/api/peddy/category/${category}`)
+    const data = await res.json()
+    displayAllPets(data.data);
+    // console.log(data.data);
+}
+
+
+
 // Display All Pets
 const displayAllPets = (pets) => {
-    // console.log(pets);
+    console.log(pets);
     const allPetsContainer = document.getElementById('all-pets-container');
+
+    // Clear all pets container
+    allPetsContainer.innerHTML = '';
+
+    // Handle no content in Pets
+    if(pets.length === 0){
+        allPetsContainer.classList.remove('grid')
+        allPetsContainer.innerHTML = `
+            <h1 class="text-center font-bold text-red-500 text-2xl">Oops!! Sorry, there is no content here.</h1>
+        `;
+    }
+    else{
+        allPetsContainer.classList.add('grid')
+    }
+
     pets.forEach(pet => {
-        console.log(pet);
+        // console.log(pet);
         const {image, pet_name, breed, date_of_birth, gender, price} = pet;
         const div = document.createElement('div')
         div.innerHTML = `
@@ -66,7 +93,7 @@ const displayAllPetCategories = (petsCategory) => {
         const div = document.createElement('div');
         div.classList ='border rounded-lg'
         div.innerHTML = `
-            <button class="flex gap-3 w-full justify-center items-center py-3">
+            <button onclick="loadSpecificPetsCategory('${pet.category}')" class="flex gap-3 w-full justify-center items-center py-3">
                 <img src=${pet.category_icon} alt="">
                 <p class="font-bold text-2xl">${pet.category}</p>
             </button>
@@ -76,5 +103,3 @@ const displayAllPetCategories = (petsCategory) => {
 }
 
 loadAllPetsCategory()
-
-
