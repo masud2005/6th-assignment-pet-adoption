@@ -15,6 +15,7 @@
 </head>
 
 <body>
+    <!-- Header Start Here -->
     <header>
         <!-- Navbar Start Here -->
         <nav class="container mx-auto flex justify-between items-center py-8 w-11/12">
@@ -33,6 +34,7 @@
         </nav>
         <!-- Navbar End Here -->
     </header>
+    <!-- Header End Here -->
 
     <main>
         <!-- Hero Section Start Here -->
@@ -78,51 +80,101 @@
             <!-- Best Deal -->
             <div class="flex justify-between items-center">
                 <h2 class="font-bold text-2xl">Best Deal For You</h2>
-                <button class="btn bg-emerald-700 px-4 md:px-8 text-white hover:text-black text-lg md:text-xl">Sort By Price</button>
+                <button class="btn bg-emerald-700 px-4 md:px-8 text-white hover:text-black text-lg md:text-xl">Sort By
+                    Price</button>
             </div>
         </section>
         <!-- Best Friend Section End Here -->
 
         <!-- All Pets Data Show Dynamically -->
-         <section class="container mx-auto mb-10 w-11/12">
+        <section class="container mx-auto mb-10 w-11/12">
             <div class="grid grid-cols-12 gap-5 md:gap-10">
-                <div  class="col-span-9">
+                <div class="col-span-9">
                     <div id="all-pets-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-7">
                         <!-- <div class="p-5 border rounded-lg">
-                            <img class="rounded-lg mb-3" src="./assests/pet.webp" alt="">
-                            <h1 class="font-bold text-xl">Mister Tartosh</h1>
+                        <img class="rounded-lg mb-3" src="./assests/pet.webp" alt="">
+                        <h1 class="font-bold text-xl">Mister Tartosh</h1>
+                        <div class="flex items-center gap-2 text-gray-500">
+                            <i class="fa-solid fa-border-all"></i>
+                            <p>Bread:</p>
+                        </div>
+                        <div class="flex items-center gap-2 text-gray-500">
+                            <i class="fa-regular fa-calendar"></i>
+                            <p>Birth:</p>
+                        </div>
+                        <div class="flex items-center gap-2 text-gray-500">
+                            <i class="fa-solid fa-venus"></i> 
+                            <p>Gender:</p>
+                        </div>
+                        <div class="flex items-center gap-2 text-gray-500">
+                            <i class="fa-solid fa-dollar-sign"></i> 
+                            <p>Price:</p>
+                        </div>
+                        <div class="pt-3 mt-2 border-t">
+                            <button class="rounded-md py-1 px-3 border text-gray-500"><i class="fa-regular fa-thumbs-up"></i></button>
+                            <button class="rounded-md py-1 px-3 border text-emerald-700 font-bold">Button</button>
+                            <button class="rounded-md py-1 px-3 border text-gren text-emerald-700 font-bold">Details</button>
+                        </div>
+                    </div> -->
+                    </div>
+                </div>
+                <div class="col-span-3 rounded-lg border">
+                    <div id="show-thumbnail" class="grid grid-cols-1 md:grid-cols-2 gap-2 p-2 md:p-3">
+
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Show Pet Details Dynamically in Modal -->
+        <section>
+            <dialog id="detailsModal" class="modal modal-bottom sm:modal-middle">
+                <div id="details-container" class="modal-box">
+                    <!-- <img class="rounded-lg mb-3" src="./assests/pet.webp" alt="">
+                    <div class="flex gap-10">
+                        <div>
+                            <h1 class="font-bold text-xl mb-2">Mister Tartosh</h1>
                             <div class="flex items-center gap-2 text-gray-500">
                                 <i class="fa-solid fa-border-all"></i>
                                 <p>Bread:</p>
                             </div>
                             <div class="flex items-center gap-2 text-gray-500">
+                                <i class="fa-solid fa-venus"></i>
+                                <p>Gender:</p>
+                            </div>
+                            <div class="flex items-center gap-2 text-gray-500">
+                                <i class="fa-solid fa-venus"></i>
+                                <p>Vaccinated status:</p>
+                            </div>
+                        </div>
+                        <div class="mt-10">
+                            <div class="flex items-center gap-2 text-gray-500">
                                 <i class="fa-regular fa-calendar"></i>
                                 <p>Birth:</p>
                             </div>
                             <div class="flex items-center gap-2 text-gray-500">
-                                <i class="fa-solid fa-venus"></i> 
-                                <p>Gender:</p>
-                            </div>
-                            <div class="flex items-center gap-2 text-gray-500">
-                                <i class="fa-solid fa-dollar-sign"></i> 
+                                <i class="fa-solid fa-dollar-sign"></i>
                                 <p>Price:</p>
                             </div>
-                            <div class="pt-3 mt-2 border-t">
-                                <button class="rounded-md py-1 px-3 border text-gray-500"><i class="fa-regular fa-thumbs-up"></i></button>
-                                <button class="rounded-md py-1 px-3 border text-emerald-700 font-bold">Button</button>
-                                <button class="rounded-md py-1 px-3 border text-gren text-emerald-700 font-bold">Details</button>
-                            </div>
-                        </div> -->
+                        </div>
                     </div>
-                </div>
-                <div class="col-span-3 rounded-lg border">
-                    <div class="grid grid-cols-2">
-
+                    <div class="pt-3 mt-2 border-t">
+                        <h2 class="font-bold mb-2">Details Information</h2>
+                        <p class="text-gray-500">It is a long established fact that a reader will be distracted by the
+                            readable content of a page when looking at its layout.</p>
+                        <ul class="list-disc ml-5  text-gray-500">
+                            <li>The point of using is that it has a more-or-less normal distribution of letters, as
+                                opposed to using.</li>
+                        </ul>
                     </div>
+                    <div class="modal-action">
+                        <form class="w-full" method="dialog">
+                            <button class="btn w-full text-emerald-700 text-lg">Cancel</button>
+                        </form>
+                    </div> -->
                 </div>
-            </div>
-         </section>
-
+            </dialog>
+        </section>
     </main>
 
     <!-- Footer Section Start Here -->
