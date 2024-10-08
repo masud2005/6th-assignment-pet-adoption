@@ -1,5 +1,4 @@
 
-
 // Load All Pet Categories
 const loadAllPetsCategory = async () => {
     const res = await fetch(`https://openapi.programming-hero.com/api/peddy/categories`)
@@ -18,7 +17,6 @@ const loadAllPets = async () => {
 }
 loadAllPets();
 
-
 // Show Specific Category
 const loadSpecificPetsCategory = async (category, petId) => {
     try {
@@ -30,7 +28,7 @@ const loadSpecificPetsCategory = async (category, petId) => {
 
         // Active Btn
         setActiveBtn(petId);
-    } catch(error) {
+    } catch (error) {
         console.log(error);
     }
 }
@@ -51,12 +49,12 @@ const setActiveBtn = (id) => {
 
     // Remove only the active classes from all buttons
     for (const btn of buttons) {
-        btn.classList.remove('bg-emerald-100', 'rounded-[50px]', 'border');
+        btn.classList.remove('bg-emerald-50', 'rounded-lg', 'border', 'border-emerald-700');
     }
 
     // Add active classes to the clicked button
     const activeBtn = document.getElementById(`btn-${id}`);
-    activeBtn.classList.add('bg-emerald-100', 'rounded-lg', 'border');
+    activeBtn.classList.add('bg-emerald-50', 'rounded-lg', 'border', 'border-emerald-700');
 }
 
 // Display All Pets
@@ -67,56 +65,63 @@ const displayAllPets = (pets) => {
     // Clear all pets container
     allPetsContainer.innerHTML = '';
 
-    // Handle no content in Pets
-    if (pets.length === 0) {
-        allPetsContainer.classList.remove('grid')
-        allPetsContainer.innerHTML = `
-            <div class='bg-gray-100 rounded-2xl px-2 py-5 md:py-20'>
-                <div class='flex justify-center'>
-                    <img class='text-center' src="../assests/error.webp" alt="Error...">
-                </div>
-                <h1 class="text-center font-bold text-red-500 text-2xl mt-5">Oops!! Sorry, there is no content here.</h1>
-            </div>
-        `;
-    }
-    else {
-        allPetsContainer.classList.add('grid')
-    }
+    // Handle Spinner
+    const spinner = document.getElementById('spinner')
+    spinner.classList.remove('hidden');
 
-    pets.forEach(pet => {
-        // console.log(pet);
-        // console.log(pet.petId);
-        const { image, pet_name, breed, date_of_birth, gender, price, petId } = pet;
-        const div = document.createElement('div')
-        div.innerHTML = `
-            <div class="p-3 xl:p-5 border rounded-lg">
-                <img class="rounded-lg mb-3 w-full lg:h-[130px] xl:h-[180px] 2xl:h-[200px]" src=${image} alt="">
-                <h1 class="font-bold text-xl mb-1">${pet_name}</h1>
-                <div class="flex items-center gap-2 text-gray-500">
-                    <i class="fa-solid fa-border-all"></i>
-                    <p>Bread: ${!breed ? 'Not Found' : `${breed}`}</p>
+    setTimeout(() => {
+        spinner.classList.add('hidden')
+        // Handle no content in Pets
+        if (pets.length === 0) {
+            allPetsContainer.classList.remove('grid')
+            allPetsContainer.innerHTML = `
+                <div class='bg-gray-100 rounded-2xl px-2 py-5 md:py-20'>
+                    <div class='flex justify-center'>
+                        <img class='text-center' src="../assests/error.webp" alt="Error...">
+                    </div>
+                    <h1 class="text-center font-bold text-red-500 text-2xl mt-5">Oops!! Sorry, there is no content here.</h1>
                 </div>
-                <div class="flex items-center gap-2 text-gray-500">
-                    <i class="fa-regular fa-calendar"></i>
-                    <p>Birth: ${!date_of_birth ? 'Not Found' : `${date_of_birth}`}</p>
+            `;
+        }
+        else {
+            allPetsContainer.classList.add('grid')
+        }
+    
+        pets.forEach(pet => {
+            // console.log(pet);
+            // console.log(pet.petId);
+            const { image, pet_name, breed, date_of_birth, gender, price, petId } = pet;
+            const div = document.createElement('div')
+            div.innerHTML = `
+                <div class="p-3 xl:p-5 border rounded-lg">
+                    <img class="rounded-lg mb-3 w-full lg:h-[130px] xl:h-[180px] 2xl:h-[200px]" src=${image} alt="">
+                    <h1 class="font-bold text-xl mb-1">${pet_name}</h1>
+                    <div class="flex items-center gap-2 text-gray-500">
+                        <i class="fa-solid fa-border-all"></i>
+                        <p>Bread: ${!breed ? 'Not Found' : `${breed}`}</p>
+                    </div>
+                    <div class="flex items-center gap-2 text-gray-500">
+                        <i class="fa-regular fa-calendar"></i>
+                        <p>Birth: ${!date_of_birth ? 'Not Found' : `${date_of_birth}`}</p>
+                    </div>
+                    <div class="flex items-center gap-2 text-gray-500">
+                        <i class="fa-solid fa-venus"></i> 
+                        <p>Gender: ${!gender ? 'Not Found' : `${gender}`}</p>
+                    </div>
+                    <div class="flex items-center gap-2 text-gray-500">
+                        <i class="fa-solid fa-dollar-sign"></i> 
+                        <p>Price: ${!price ? 'Not Found' : `${price}$`}</p>
+                    </div>
+                    <div class="pt-3 mt-2 border-t">
+                        <button onclick="${`showThumbnail('${image}')`}" class="rounded-md py-1 px-2 xl:px-3 border text-gray-500 hover:bg-gray-200 transition duration-300"><i class="fa-regular fa-thumbs-up"></i></button>
+                        <button class="rounded-md py-1 px-2 xl:px-3 border text-emerald-700 font-bold hover:bg-gray-200 transition duration-300">Adopt</button>
+                        <button onclick=${`loadPetDetails('${petId}')`} class="rounded-md py-1 px-2 xl:px-3 border text-emerald-700 font-bold hover:bg-gray-200 transition duration-300">Details</button>
+                    </div>
                 </div>
-                <div class="flex items-center gap-2 text-gray-500">
-                    <i class="fa-solid fa-venus"></i> 
-                    <p>Gender: ${!gender ? 'Not Found' : `${gender}`}</p>
-                </div>
-                <div class="flex items-center gap-2 text-gray-500">
-                    <i class="fa-solid fa-dollar-sign"></i> 
-                    <p>Price: ${!price ? 'Not Found' : `${price}$`}</p>
-                </div>
-                <div class="pt-3 mt-2 border-t">
-                    <button onclick="${`showThumbnail('${image}')`}" class="rounded-md py-1 px-2 xl:px-3 border text-gray-500 hover:bg-gray-200 transition duration-300"><i class="fa-regular fa-thumbs-up"></i></button>
-                    <button class="rounded-md py-1 px-2 xl:px-3 border text-emerald-700 font-bold hover:bg-gray-200 transition duration-300">Adopt</button>
-                    <button onclick=${`loadPetDetails('${petId}')`} class="rounded-md py-1 px-2 xl:px-3 border text-emerald-700 font-bold hover:bg-gray-200 transition duration-300">Details</button>
-                </div>
-            </div>
-        `;
-        allPetsContainer.append(div);
-    })
+            `;
+            allPetsContainer.append(div);
+        })
+    }, 2000)
 }
 
 // All Pet Categories Display
@@ -139,7 +144,7 @@ const displayAllPetCategories = (petsCategory) => {
 
 // Like Btn Clicked Show thumbnail
 const showThumbnail = (thumbnail) => {
-    console.log(thumbnail);
+    // console.log(thumbnail);
     const thumbnailContainer = document.getElementById('show-thumbnail');
     let div = document.createElement('div');
     div.innerHTML = `
