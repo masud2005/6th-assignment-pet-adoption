@@ -20,12 +20,19 @@ loadAllPets();
 
 
 // Show Specific Category
-const loadSpecificPetsCategory = async (category) => {
-    // console.log('category');
-    const res = await fetch(`https://openapi.programming-hero.com/api/peddy/category/${category}`)
-    const data = await res.json()
-    displayAllPets(data.data);
-    // console.log(data.data);
+const loadSpecificPetsCategory = async (category, petId) => {
+    try {
+        const res = await fetch(`https://openapi.programming-hero.com/api/peddy/category/${category}`)
+        const data = await res.json()
+        displayAllPets(data.data);
+        // console.log(data.data);
+        // console.log(category, petId);
+
+        // Active Btn
+        setActiveBtn(petId);
+    } catch(error) {
+        console.log(error);
+    }
 }
 
 // Load Pet Details
@@ -36,6 +43,21 @@ const loadPetDetails = (id) => {
         .then(data => displayPetDetails(data.petData))
 }
 
+// Active Category Btn
+const setActiveBtn = (id) => {
+    // console.log(id);
+    // Get all buttons with the class 'category-btn'
+    const buttons = document.getElementsByClassName('category-btn');
+
+    // Remove only the active classes from all buttons
+    for (const btn of buttons) {
+        btn.classList.remove('bg-emerald-100', 'rounded-[50px]', 'border');
+    }
+
+    // Add active classes to the clicked button
+    const activeBtn = document.getElementById(`btn-${id}`);
+    activeBtn.classList.add('bg-emerald-100', 'rounded-lg', 'border');
+}
 
 // Display All Pets
 const displayAllPets = (pets) => {
@@ -106,7 +128,7 @@ const displayAllPetCategories = (petsCategory) => {
         const div = document.createElement('div');
         div.classList = 'border rounded-lg'
         div.innerHTML = `
-            <button onclick="loadSpecificPetsCategory('${pet.category}')" class="flex gap-3 w-full justify-center items-center py-3">
+            <button id='btn-${pet.id}' onclick="loadSpecificPetsCategory('${pet.category}', '${pet.id}')" class="flex gap-3 w-full justify-center items-center py-3 category-btn">
                 <img src=${pet.category_icon} alt="">
                 <p class="font-bold text-2xl">${pet.category}</p>
             </button>
@@ -130,7 +152,7 @@ const showThumbnail = (thumbnail) => {
 const displayPetDetails = (details) => {
     // loadPetDetails();
     console.log(details);
-    const { image, pet_name, breed , pet_details, price, date_of_birth, vaccinated_status, gender, } = details;
+    const { image, pet_name, breed, pet_details, price, date_of_birth, vaccinated_status, gender, } = details;
 
     const detailsContainer = document.getElementById('details-container');
     detailsContainer.innerHTML = '';
