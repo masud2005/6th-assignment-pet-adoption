@@ -9,29 +9,46 @@ const loadAllPetsCategory = async () => {
     //     .then(data => console.log(data))
 }
 
+// Global Variables
+let allPets = []; // To hold all pets
+let currentPets = []; // To hold currently displayed pets
+
 // Load All Pets
 const loadAllPets = async () => {
-    const res = await fetch(`https://openapi.programming-hero.com/api/peddy/pets`)
-    const data = await res.json()
-    displayAllPets(data.pets);
+    const res = await fetch(`https://openapi.programming-hero.com/api/peddy/pets`);
+    const data = await res.json();
+    allPets = data.pets; // Store all pets in the global variable
+    currentPets = allPets; // Initially, current pets are all pets
+    displayAllPets(currentPets); // Display all pets
 }
-loadAllPets();
 
-// Show Specific Category
+// Sort Pets By Price
+const sortPetsByPrice = () => {
+    if (currentPets.length === 0) {
+        // If no pets to sort
+        return;
+    }
+    currentPets.sort((a, b) => b.price - a.price); // Sort in descending order
+    displayAllPets(currentPets); // Display sorted pets
+}
+
+// Load Specific Category
 const loadSpecificPetsCategory = async (category, petId) => {
     try {
-        const res = await fetch(`https://openapi.programming-hero.com/api/peddy/category/${category}`)
-        const data = await res.json()
-        displayAllPets(data.data);
-        // console.log(data.data);
-        // console.log(category, petId);
-
-        // Active Btn
+        const res = await fetch(`https://openapi.programming-hero.com/api/peddy/category/${category}`);
+        const data = await res.json();
+        currentPets = data.data; // Update current pets to the selected category
+        displayAllPets(currentPets);
         setActiveBtn(petId);
     } catch (error) {
         console.log(error);
     }
 }
+
+document.getElementById('sort-price-btn').addEventListener('click', function () {
+    sortPetsByPrice(); // Call the sort function when the button is clicked
+});
+
 
 // Load Pet Details
 const loadPetDetails = (id) => {
@@ -86,7 +103,7 @@ const displayAllPets = (pets) => {
         else {
             allPetsContainer.classList.add('grid')
         }
-    
+
         pets.forEach(pet => {
             // console.log(pet);
             // console.log(pet.petId);
@@ -121,7 +138,7 @@ const displayAllPets = (pets) => {
             `;
             allPetsContainer.append(div);
         })
-    }, 2000)
+    })
 }
 
 // All Pet Categories Display
@@ -207,4 +224,5 @@ const displayPetDetails = (details) => {
     document.getElementById('detailsModal').showModal();
 }
 
+loadAllPets();
 loadAllPetsCategory()
